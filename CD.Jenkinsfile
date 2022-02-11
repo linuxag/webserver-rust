@@ -15,7 +15,7 @@ pipeline
             steps{
                 script 
                 {
-                    emailext subject: '${JOB_NAME} - ${BUILD_NUMBER} ', body: 'Job url : ${BUILD_URL}',  to: 'jsnrahul@gmail.com'
+                    emailext subject: '${JOB_NAME} - ${BUILD_NUMBER} ', body: 'Job url : ${BUILD_URL}',  to: 'ashutoshgupta0077@gmail.com'
                 }
             }
         
@@ -50,7 +50,7 @@ pipeline
             steps{
                 sh '''
                 sleep 20
-                curl 10.8.0.2:30011
+                curl 10.8.0.2:30013
                 echo "smoke test passed"
                 '''
             }

@@ -40,7 +40,7 @@ spec:
     - protocol: TCP
       port: 8082
       targetPort: 8082
-      nodePort: 30011
+      nodePort: 30013
   selector:
     run: rust-cart-app1
   type: NodePort

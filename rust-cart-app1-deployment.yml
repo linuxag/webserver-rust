@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-cart-app1
+spec:
+  selector:
+    matchLabels:
+      run: rust-cart-app1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rust-cart-app1
+    spec:
+      containers:
+      - name: rust-cart-app1
+        image: newbielinux1/rust-cart-app1:unique_tag
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+      imagePullSecrets:
+      - name: regcred     
+      
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rust-cart-app1-svc
+  labels:
+    run: rust-cart-app1-svc
+spec:
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+      nodePort: 30011
+  selector:
+    run: rust-cart-app1
+  type: NodePort
